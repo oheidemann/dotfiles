@@ -1,6 +1,6 @@
 require 'rake'
 
-desc "Hook our dotfiles into system-standard positions."
+desc "Hook repository dotfiles into system-standard positions."
 task :install => :submodules do
   # this has all the linkables from this directory.
   linkables = Dir.glob('*/**{.symlink}')
@@ -12,7 +12,7 @@ task :install => :submodules do
   linkables.each do |linkable|
     overwrite = false
     backup = false
-    
+
     file = linkable.split('/').last.split('.symlink').last
     source = "#{ENV["PWD"]}/#{linkable}"
     target = "#{ENV["HOME"]}/.#{file}"
@@ -34,7 +34,14 @@ task :install => :submodules do
         end
       end
       FileUtils.rm_rf(target) if overwrite || overwrite_all
-      `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
+      if backup || backup_all
+        if File.symlink?(target) && File.readlink(target).start_with?(Dir.pwd)
+          puts "#{target} is a symlink into dotfile repo, no backup needed"
+          FileUtils.rm_rf(target)
+        else
+          `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"`
+        end
+      end
     end
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
@@ -44,6 +51,27 @@ end
 desc "Init and update submodules."
 task :submodules do
   sh('git submodule update --init')
+end
+
+desc "Unhook our dotfiles."
+task :uninstall do
+
+  repoDir = Dir.pwd
+
+  #find dotfiles linking into repoDir
+  Dir.glob('../.*').each do |dotfile|
+    if File.symlink?(dotfile) && File.readlink(dotfile).start_with?(repoDir)
+      puts "unlink #{dotfile}"
+      FileUtils.rm(dotfile)
+
+      if File.exists?("#{dotfile}.backup")
+        puts "put backup back in place for #{dotfile}"
+        `mv "#{dotfile}.backup" "#{dotfile}"` 
+      end
+    end
+  end
+  p
+  success_msg("uninstalled")
 end
 
 task :default => 'install'
