@@ -1,12 +1,11 @@
 # Aliases in this file are bash and zsh compatible
 
 # PS
-alias psg="ps aux | grep "
-alias psr='ps aux | grep ruby'
+alias psg="ps | grep "
+alias psj='ps | grep java'
 
 # Moving around
 alias ..='cd ..'
-alias cdb='cd -'
 
 # Show human friendly numbers and colors
 alias df='df -h'
@@ -18,17 +17,17 @@ alias du='du -h -d 2'
 alias lsg='ll | grep'
 
 # Alias Editing
-alias ae='vi $yadr/zsh/aliases' #alias edit
-alias ar='source $yadr/zsh/aliases'  #alias reload
+#alias ae='vi $yadr/zsh/aliases' #alias edit
+#alias ar='source $yadr/zsh/aliases'  #alias reload
 
 # vim using
 alias vim=$(brew ls macvim | grep Contents/MacOS/Vim)
 
 # vimrc editing
-alias ve='vi ~/.vimrc'
+alias ve='mvim ~/.vimrc'
 
 # zsh profile editing
-alias ze='vi ~/.zshrc'
+alias ze='mvim ~/.zshrc'
 alias zr='source ~/.zshrc'
 
 # Git Aliases
@@ -66,8 +65,6 @@ alias gpub='grb publish'
 alias gtr='grb track'
 alias gpl='git pull'
 alias gplr='git pull --rebase'
-alias gps='git push'
-alias gpsh='git push'
 alias gnb='git nb' # new branch aka checkout -b
 alias grs='git reset' 
 alias grsh='git reset --hard'
