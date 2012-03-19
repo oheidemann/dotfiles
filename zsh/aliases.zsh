@@ -44,8 +44,8 @@ alias ps='ps aux'
 alias gz='tar -zcvf'
 
 # Ruby
-alias c='script/console --irb=pry'
-alias ms='mongrel_rails start'
+# alias c='script/console --irb=pry'
+# alias ms='mongrel_rails start'
 
 # Vim/ctags "mctags = make ctags", using the ruby specific version
 # to save some time
@@ -55,9 +55,9 @@ alias ka9='killall -9'
 alias k9='kill -9'
 
 # Gem install
-alias sgi='sudo gem install --no-ri --no-rdoc'
+# alias sgi='sudo gem install --no-ri --no-rdoc'
 
 # TODOS
 # This uses NValt (NotationalVelocity alt fork) - http://brettterpstra.com/project/nvalt/
 # to find the note called 'todo'
-alias todo='open nvalt://find/todo'
+# alias todo='open nvalt://find/todo'

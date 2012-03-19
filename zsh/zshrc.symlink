@@ -8,7 +8,8 @@ if [[ -d $HOME/.oh-my-zsh ]]; then
 
   # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
   # Example format: plugins=(rails git textmate ruby lighthouse)
-  plugins=(vi-mode git rvm ruby rails autojump bundler gem gnu-utils heroku rake redis-cli zsh-syntax-highlighting history-substring-search)
+  # plugins=(vi-mode git rvm ruby rails autojump bundler gem gnu-utils heroku rake redis-cli zsh-syntax-highlighting history-substring-search)
+  plugins=(osx)
 
   # Load default oh-my-zsh stuff
   source $ZSH/oh-my-zsh.sh
@@ -19,13 +20,6 @@ export REPO_DIR=`find -L ~ -type file -maxdepth 2 -name .mydr | head | sed 's/.m
 
 # source every .zsh file in this rep
 for config_file ($REPO_DIR/**/*.zsh) source $config_file
-
-# Don't change. The following determines where YADR is installed.
-#yadr=`find -L ~ -type file -maxdepth 2 -name .yadr | head | sed 's:\.yadr\/::'`
-
-# Configuration
-#source $yadr/zsh/aliases
-#source $yadr/zsh/zsh_aliases
 
 # Things I don't want to publish to github
 [[ -s "$HOME/.secrets" ]] && source "$HOME/.secrets"
