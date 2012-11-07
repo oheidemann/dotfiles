@@ -30,7 +30,6 @@ alias ve='mvim ~/.vimrc'
 alias ze='mvim ~/.zshrc'
 alias zr='source ~/.zshrc'
 
-
 # Common shell functions
 alias less='less -r'
 alias tf='tail -f'
