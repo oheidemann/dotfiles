@@ -60,3 +60,6 @@ alias k9='kill -9'
 # This uses NValt (NotationalVelocity alt fork) - http://brettterpstra.com/project/nvalt/
 # to find the note called 'todo'
 # alias todo='open nvalt://find/todo'
+
+# jq pretty print
+alias jsonpretty="jq '.'"
