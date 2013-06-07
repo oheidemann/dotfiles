@@ -106,7 +106,7 @@
   default = tracking
 [core]
   autocrlf = false
-	editor = mvim
+	editor = vim
   excludesfile = ~/.dotfiles/git/gitignore_global
 [advice]
   statusHints = false
