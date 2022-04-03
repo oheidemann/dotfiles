@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-echo "install $(dirname "$0")"
+source scripts/utils.sh
 
-DOTFILES_ROOT=$1
+startScript
+SCRIPT_HOME="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-cd "$(dirname "$0")"
-source ../scripts/utils.sh
-
-link_file "$(pwd -P)/.gitconfig" ~/.gitconfig
+if test ! $(which git); then
+	brew install git
+	link_file "$SCRIPT_HOME/.gitconfig" ~/.gitconfig
+fi
