@@ -6,6 +6,7 @@ startScript
 
 brew install zsh
 brew install zsh-completions
+brew install zplug
 
 SCRIPT_HOME="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 PREZTO_HOME="${ZDOTDIR:-$HOME}/.zprezto"
