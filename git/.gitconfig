@@ -15,3 +15,6 @@
 	excludesfile = ~/.dotfiles/git/.gitignore_global
 [credential]
 	helper = osxkeychain
+[user]
+	name = Olivier Heidemann
+	email = heidemann@gmail.com
