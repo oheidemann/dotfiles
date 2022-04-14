@@ -33,3 +33,5 @@ export JAVA_HOME="/Users/ohe/Library/Caches/Coursier/arc/https/github.com/AdoptO
 # >>> coursier install directory >>>
 export PATH="$PATH:/Users/ohe/Library/Application Support/Coursier/bin"
 # <<< coursier install directory <<<
+
+. "$HOME/.cargo/env"
