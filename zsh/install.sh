@@ -24,6 +24,7 @@ if [ !  -d "$PREZTO_HOME" ]; then
 	#override prezto defaults
 	link_file "$SCRIPT_HOME/zpreztorc" ~/.zpreztorc
 	link_file "$SCRIPT_HOME/zshrc" ~/.zshrc
+	link_file "$SCRIPT_HOME/zfunc" ~/.zfunc
 
 	success "Prezto successfuly installed..."
 else

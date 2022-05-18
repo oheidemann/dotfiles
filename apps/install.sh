@@ -9,6 +9,7 @@ SCRIPT_HOME="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 brew install htop
 brew install jenv
 brew install httpie
+brew install npm
 
 brew install --cask iterm2
 brew install --cask homebrew/cask-fonts/font-inconsolata
