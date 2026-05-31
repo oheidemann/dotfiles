@@ -1,0 +1,26 @@
+# antidote plugin bundle — managed in dotfiles (zsh/zsh_plugins.txt → ~/.zsh_plugins.txt)
+# Order matters. See https://antidote.sh and https://github.com/mattmc3/zephyr
+
+# --- Zephyr: Prezto-equivalent core modules (load early) ---
+mattmc3/zephyr path:plugins/environment
+mattmc3/zephyr path:plugins/color
+mattmc3/zephyr path:plugins/utility
+mattmc3/zephyr path:plugins/directory
+mattmc3/zephyr path:plugins/history
+
+# --- Extra completions (must reach fpath before compinit) ---
+zsh-users/zsh-completions path:src kind:fpath
+ryutok/rust-zsh-completions
+
+# --- Completion system (compstyle sets styles; completion runs compinit) ---
+mattmc3/zephyr path:plugins/compstyle
+mattmc3/zephyr path:plugins/completion
+
+# --- oh-my-zsh plugins (git aliases, macOS helpers) ---
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/macos
+
+# --- Interactive UX (load last; this order matters) ---
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+jeffreytse/zsh-vi-mode

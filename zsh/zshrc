@@ -1,23 +1,26 @@
-source $HOME/.zprezto/runcoms/zshrc
+# Homebrew (must run before antidote, which is brew-installed)
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-eval $(/opt/homebrew/bin/brew shellenv)
+# Custom completion functions (e.g. ~/.zfunc/_rustup) — must precede compinit
+fpath=(${ZDOTDIR:-$HOME}/.zfunc(N) $fpath)
 
-export ZPLUG_HOME=/opt/homebrew/opt/zplug
-source $ZPLUG_HOME/init.zsh
+# antidote plugin manager — loads plugins from ~/.zsh_plugins.txt.
+# Zephyr provides the Prezto-equivalent core modules (completion, history, etc.).
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load
 
-# Plugins
-zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/osx",   from:oh-my-zsh
-zplug "zsh-users/zsh-autosuggestions"
-zplug 'ryutok/rust-zsh-completions'
-zplug "jeffreytse/zsh-vi-mode"
+# Restore prior Prezto behavior that Zephyr leaves off by default
+setopt SHARE_HISTORY   # share command history across sessions
+setopt AUTO_CD         # type a directory name to cd into it
 
-# Install any declared-but-missing plugins (keeps a fresh machine reproducible)
-if ! zplug check; then
-  zplug install
-fi
-
-zplug load
+# Bind ↑/↓ (and ^P/^N) to history-substring-search.
+# Set in zvm_after_init because zsh-vi-mode resets keymaps on init.
+function zvm_after_init() {
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+  bindkey '^P' history-substring-search-up
+  bindkey '^N' history-substring-search-down
+}
 
 # Starship prompt (https://starship.rs). Customize via ~/.config/starship.toml
 eval "$(starship init zsh)"
@@ -44,3 +47,6 @@ export PATH="$PATH:/Users/ohe/.lmstudio/bin"
 
 # Scaleway CLI autocomplete initialization.
 eval "$(scw autocomplete script shell=zsh)"
+
+# JetBrains Toolbox scripts (migrated from the old prezto ~/.zprofile)
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
