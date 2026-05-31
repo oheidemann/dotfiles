@@ -9,7 +9,6 @@ source $ZPLUG_HOME/init.zsh
 zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/osx",   from:oh-my-zsh
 zplug "zsh-users/zsh-autosuggestions"
-zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 zplug 'ryutok/rust-zsh-completions'
 zplug "jeffreytse/zsh-vi-mode"
 
@@ -20,10 +19,8 @@ fi
 
 zplug load
 
-# Spaceship prompt config (see https://spaceship-prompt.sh/config/intro/)
-# Override defaults by exporting SPACESHIP_* vars here, e.g.:
-# SPACESHIP_PROMPT_ADD_NEWLINE=true
-# SPACESHIP_CHAR_SYMBOL="➜ "
+# Starship prompt (https://starship.rs). Customize via ~/.config/starship.toml
+eval "$(starship init zsh)"
 
 # brew jenv
 export PATH="$HOME/.jenv/bin:$PATH"
