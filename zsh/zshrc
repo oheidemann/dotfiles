@@ -13,28 +13,35 @@ antidote load
 setopt SHARE_HISTORY   # share command history across sessions
 setopt AUTO_CD         # type a directory name to cd into it
 
-# Prezto-style ls aliases (Zephyr's utility module only defines the base `ls`).
-# These chain onto the `ls` alias, so they inherit its --color/-h.
-alias l='ls -1A'          # one column, include hidden
-alias ll='ls -lh'         # long format, human-readable sizes
-alias lr='ll -R'          # long format, recursive
-alias la='ll -A'          # long format, include hidden
-alias lm='la | "$PAGER"'  # long format, hidden, through the pager
-alias lk='ll -Sr'         # long format, sorted by size (largest last)
-alias lt='ll -tr'         # long format, sorted by time (newest last)
-alias sl='ls'             # common typo
+# ls family powered by eza (modern ls). Sub-aliases chain onto the base `ls`.
+alias ls='eza --group-directories-first --icons=auto'
+alias l='ls -1a'                  # one column, include hidden
+alias ll='ls -l --git'            # long format, git status
+alias la='ls -la --git'           # long format, include hidden
+alias lr='ls -l --recurse'        # long format, recursive
+alias lk='ls -l --sort=size'      # long format, sorted by size
+alias lt='ls -l --sort=modified'  # long format, sorted by time
+alias tree='ls --tree'            # tree view
+alias sl='ls'                     # common typo
 
-# Bind ↑/↓ (and ^P/^N) to history-substring-search.
-# Set in zvm_after_init because zsh-vi-mode resets keymaps on init.
+# atuin owns history search (Ctrl-R + ↑). Bind in zvm_after_init because
+# zsh-vi-mode resets keymaps on init, which would otherwise clobber these.
 function zvm_after_init() {
-  bindkey '^[[A' history-substring-search-up
-  bindkey '^[[B' history-substring-search-down
-  bindkey '^P' history-substring-search-up
-  bindkey '^N' history-substring-search-down
+  bindkey -M viins '^r' atuin-search-viins
+  bindkey -M vicmd '^r' atuin-search-vicmd
+  bindkey -M viins '^[[A' atuin-up-search-viins
+  bindkey -M vicmd '^[[A' atuin-up-search-vicmd
+  bindkey -M viins '^[OA' atuin-up-search-viins
+  bindkey -M vicmd '^[OA' atuin-up-search-vicmd
 }
 
 # Starship prompt (https://starship.rs). Customize via ~/.config/starship.toml
 eval "$(starship init zsh)"
+
+# Modern CLI tools
+eval "$(zoxide init zsh)"        # `z`/`zi` — smarter cd by frecency
+export ATUIN_NOBIND=true         # we bind atuin ourselves (see zvm_after_init)
+eval "$(atuin init zsh)"         # searchable SQLite shell history (Ctrl-R + ↑)
 
 # brew jenv
 export PATH="$HOME/.jenv/bin:$PATH"

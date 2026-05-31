@@ -19,6 +19,9 @@ brew install ast-grep
 brew install jq
 brew install ripgrep
 brew install ncdu
+brew install zoxide
+brew install atuin
+brew install eza
 
 # Casks
 brew install --cask ghostty
