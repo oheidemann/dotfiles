@@ -27,6 +27,10 @@ if [ !  -d "$PREZTO_HOME" ]; then
 	link_file "$SCRIPT_HOME/zshrc" ~/.zshrc
 	link_file "$SCRIPT_HOME/zfunc" ~/.zfunc
 
+	# starship prompt config
+	mkdir -p ~/.config
+	link_file "$SCRIPT_HOME/starship.toml" ~/.config/starship.toml
+
 	success "Prezto successfuly installed..."
 else
 	success "Prezto is already installed..."

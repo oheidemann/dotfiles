@@ -1,0 +1,26 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Starship prompt — https://starship.rs/config/
+# Uses Starship's default Nerd Font glyphs. Set your terminal font to a Nerd Font
+# (e.g. "FiraCode Nerd Font Mono") for the icons to render.
+
+# Blank line before each prompt.
+add_newline = true
+
+# Prompt character: ❯ green on success, red on error.
+# ❮ shows when zsh-vi-mode is in NORMAL mode.
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+# --- Example customizations (uncomment to use) ---
+# [directory]
+# truncation_length = 3
+# truncate_to_repo = true
+#
+# [git_branch]
+# symbol = " "        # default Nerd Font branch glyph
+#
+# [cmd_duration]
+# min_time = 500        # only show for commands slower than 500ms
