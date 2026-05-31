@@ -13,6 +13,17 @@ antidote load
 setopt SHARE_HISTORY   # share command history across sessions
 setopt AUTO_CD         # type a directory name to cd into it
 
+# Prezto-style ls aliases (Zephyr's utility module only defines the base `ls`).
+# These chain onto the `ls` alias, so they inherit its --color/-h.
+alias l='ls -1A'          # one column, include hidden
+alias ll='ls -lh'         # long format, human-readable sizes
+alias lr='ll -R'          # long format, recursive
+alias la='ll -A'          # long format, include hidden
+alias lm='la | "$PAGER"'  # long format, hidden, through the pager
+alias lk='ll -Sr'         # long format, sorted by size (largest last)
+alias lt='ll -tr'         # long format, sorted by time (newest last)
+alias sl='ls'             # common typo
+
 # Bind ↑/↓ (and ^P/^N) to history-substring-search.
 # Set in zvm_after_init because zsh-vi-mode resets keymaps on init.
 function zvm_after_init() {
