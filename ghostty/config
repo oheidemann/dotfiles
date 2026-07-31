@@ -1,0 +1,9 @@
+# Opt+↑ opens atuin history search.
+# Cmd can't be used: macOS swallows it before the shell sees it. (We also tried
+# Ghostty's `text:` action to inject Ctrl-R, but it sent the literal string
+# "\x12" instead of the 0x12 control byte.)
+# Instead, translate Opt+↑ into the standard Alt+Up escape sequence
+# (ESC [ 1 ; 3 A) and let zsh bind that to atuin (see ~/.zshrc zvm_after_init).
+# Only this exact key is intercepted, so the left-Option key stays free for
+# composing special characters.
+keybind = alt+up=csi:1;3A

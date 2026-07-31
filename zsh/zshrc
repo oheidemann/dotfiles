@@ -24,15 +24,17 @@ alias lt='ls -l --sort=modified'  # long format, sorted by time
 alias tree='ls --tree'            # tree view
 alias sl='ls'                     # common typo
 
-# atuin owns history search (Ctrl-R + ↑). Bind in zvm_after_init because
-# zsh-vi-mode resets keymaps on init, which would otherwise clobber these.
+# atuin history search: Ctrl-R, plus Opt+↑ (Ghostty maps Opt+↑ to the Alt+Up
+# sequence ^[[1;3A — see ~/.config/ghostty/config). Bind in zvm_after_init
+# because zsh-vi-mode resets keymaps on init, which would otherwise clobber these.
+# NOTE: the bare ↑ (^[[A / ^[OA) is intentionally left alone — the mouse wheel
+# emits it, so binding it would make wheel-scroll-up open atuin instead of
+# scrolling the terminal scrollback.
 function zvm_after_init() {
   bindkey -M viins '^r' atuin-search-viins
   bindkey -M vicmd '^r' atuin-search-vicmd
-  bindkey -M viins '^[[A' atuin-up-search-viins
-  bindkey -M vicmd '^[[A' atuin-up-search-vicmd
-  bindkey -M viins '^[OA' atuin-up-search-viins
-  bindkey -M vicmd '^[OA' atuin-up-search-vicmd
+  bindkey -M viins '^[[1;3A' atuin-up-search-viins
+  bindkey -M vicmd '^[[1;3A' atuin-up-search-vicmd
 }
 
 # Starship prompt (https://starship.rs). Customize via ~/.config/starship.toml
@@ -41,7 +43,7 @@ eval "$(starship init zsh)"
 # Modern CLI tools
 eval "$(zoxide init zsh)"        # `z`/`zi` — smarter cd by frecency
 export ATUIN_NOBIND=true         # we bind atuin ourselves (see zvm_after_init)
-eval "$(atuin init zsh)"         # searchable SQLite shell history (Ctrl-R + ↑)
+eval "$(atuin init zsh)"         # searchable SQLite shell history (Ctrl-R)
 
 # brew jenv
 export PATH="$HOME/.jenv/bin:$PATH"
