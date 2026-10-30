@@ -13,6 +13,9 @@ antidote load
 setopt SHARE_HISTORY   # share command history across sessions
 setopt AUTO_CD         # type a directory name to cd into it
 
+# Claude's Bash tool: pass unmatched globs through like bash (grep --include=*.html)
+[[ -n $CLAUDECODE ]] && setopt nonomatch
+
 # ls family powered by eza (modern ls). Sub-aliases chain onto the base `ls`.
 alias ls='eza --group-directories-first --icons=auto'
 alias l='ls -1a'                  # one column, include hidden
