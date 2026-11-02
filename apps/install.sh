@@ -8,16 +8,12 @@ SCRIPT_HOME="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 brew install htop
 brew install jenv
-brew install httpie
-brew install npm
+brew install xh
 
 # CLI tools
 brew install gh
 brew install fd
 brew install fzf
-brew install ast-grep
-brew install jq
-brew install ripgrep
 brew install ncdu
 brew install zoxide
 brew install atuin
